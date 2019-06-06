@@ -66,3 +66,10 @@ void MainWindow::on_pushButton_clicked()
     ui->tableView->setModel(modal);
     ui->lineEdit->setText("");
 }
+
+void MainWindow::on_pushButton_2_clicked()
+{
+    Dialog dialog;
+    dialog.setModal(true);
+    dialog.exec();
+}
