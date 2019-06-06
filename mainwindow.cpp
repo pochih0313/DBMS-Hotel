@@ -14,13 +14,8 @@ MainWindow::MainWindow(QWidget *parent) :
     ui->comboBox->addItem("Room reservation");
     ui->comboBox->addItem("Service reservation");
 
-    mydb = QSqlDatabase::addDatabase("QSQLITE");
-    mydb.setDatabaseName("D:/QT/workspace/database/Hotel/hotel.db");
 
-    if(!mydb.open()) {
-        qDebug()<<"Failed";
-        return;
-    }
+    connOpen(); //open database (in mainwindow.h
 
 }
 
@@ -55,13 +50,17 @@ void MainWindow::on_pushButton_clicked()
 
     if(ui->radioButton->isChecked()) {
         if(ui->lineEdit->text() != "") {
-            qry->prepare("select * from GUEST where Guest_name='"+ui->lineEdit->text()+"'");
+            qry->exec("select * from GUEST where Guest_name='"+ui->lineEdit->text()+"'");
+        }
+    }
+    else if(ui->radioButton_2->isChecked()) {
+        if(ui->lineEdit->text() != "") {
+            qry->exec("select Reservation_no,Guest_name,RESERVATION.Guest_id,Phone_no,Check_in_date,No_of_days,No_of_guest,Room_no from RESERVATION JOIN GUEST on RESERVATION.Guest_id = GUEST.Guest_id where Guest_name='"+ui->lineEdit->text()+"'");
         }
     }
 
     qDebug()<<ui->lineEdit->text();
 
-    qry->exec();
     modal->setQuery(*qry);
     ui->tableView->setModel(modal);
     ui->lineEdit->setText("");
@@ -69,6 +68,8 @@ void MainWindow::on_pushButton_clicked()
 
 void MainWindow::on_pushButton_2_clicked()
 {
+    connClose();
+
     Dialog dialog;
     dialog.setModal(true);
     dialog.exec();

@@ -1,3 +1,4 @@
+#pragma once
 #ifndef MAINWINDOW_H
 #define MAINWINDOW_H
 
@@ -5,7 +6,7 @@
 #include <QtSql>
 #include <QDebug>
 #include <QFileInfo>
-#include <dialog.h>
+#include "dialog.h"
 
 namespace Ui {
 class MainWindow;
@@ -17,6 +18,23 @@ class MainWindow : public QMainWindow
 
 public:
     QSqlDatabase mydb;
+    void connClose()
+    {
+        mydb.close();
+        mydb.removeDatabase(QSqlDatabase::defaultConnection);
+    }
+    bool connOpen()
+    {
+        mydb = QSqlDatabase::addDatabase("QSQLITE");
+        mydb.setDatabaseName("C:/Users/t8570_6kdkmvq/Desktop/Database_Hotel/hotel.db");
+        if(!mydb.open()) {
+            qDebug()<<"Failed";
+            return false;
+        }
+        else return true;
+    }
+
+public:
     explicit MainWindow(QWidget *parent = nullptr);
     ~MainWindow();
 
