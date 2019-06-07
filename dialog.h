@@ -23,6 +23,8 @@ private slots:
 
     void on_buttonBox_clicked(QAbstractButton *button);
 
+    void on_pushButton_clicked();
+
 private:
     Ui::Dialog *ui;
 };

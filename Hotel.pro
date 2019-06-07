@@ -26,15 +26,21 @@ CONFIG += c++11
 
 SOURCES += \
         dialog.cpp \
+        dialog2.cpp \
+        dialog3.cpp \
         main.cpp \
         mainwindow.cpp
 
 HEADERS += \
         dialog.h \
+        dialog2.h \
+        dialog3.h \
         mainwindow.h
 
 FORMS += \
         dialog.ui \
+        dialog2.ui \
+        dialog3.ui \
         mainwindow.ui
 
 # Default rules for deployment.

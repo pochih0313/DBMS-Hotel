@@ -19,7 +19,7 @@
      <x>30</x>
      <y>260</y>
      <width>341</width>
-     <height>32</height>
+     <height>21</height>
     </rect>
    </property>
    <property name="orientation">
@@ -151,6 +151,19 @@
      </widget>
     </item>
    </layout>
+  </widget>
+  <widget class="QPushButton" name="pushButton">
+   <property name="geometry">
+    <rect>
+     <x>40</x>
+     <y>260</y>
+     <width>75</width>
+     <height>21</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Update</string>
+   </property>
   </widget>
  </widget>
  <resources/>
